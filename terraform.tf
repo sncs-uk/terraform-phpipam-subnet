@@ -57,10 +57,20 @@ resource "phpipam_first_free_subnet" "subnet_v4" {
   parent_subnet_id  = data.phpipam_subnet.supernet_v4.subnet_id
   subnet_mask       = var.subnet_v4_length
   description       = var.subnet_description
+  lifecycle {
+    ignore_changes = [
+      section_id,
+    ]
+  }
 }
 
 resource "phpipam_first_free_subnet" "subnet_v6" {
   parent_subnet_id  = data.phpipam_subnet.supernet_v6.subnet_id
   subnet_mask       = var.subnet_v6_length
   description       = var.subnet_description
+  lifecycle {
+    ignore_changes = [
+      section_id,
+    ]
+  }
 }
