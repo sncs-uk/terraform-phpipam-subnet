@@ -77,7 +77,7 @@ resource "phpipam_first_free_subnet" "subnet_v6" {
 
 resource "phpipam_first_free_address" "addresses_v4" {
   count          = var.address_count
-  depends_on     = [phpipam_first_free_address.gateway_v4]
+  depends_on     = var.add_gateway ? [phpipam_first_free_address.gateway_v4] : []
   subnet_id      = phpipam_first_free_subnet.subnet_v4.subnet_id
   description    = length(var.address_description) > count.index ? var.address_description[count.index] : "Created by Terraform"
   hostname       = length(var.address_hostname) > count.index ? var.address_hostname[count.index] : null
@@ -92,7 +92,7 @@ resource "phpipam_first_free_address" "addresses_v4" {
 
 resource "phpipam_first_free_address" "addresses_v6" {
   count          = var.address_count
-  depends_on     = [phpipam_first_free_address.gateway_v6]
+  depends_on     = var.add_gateway ? [phpipam_first_free_address.gateway_v6] : []
   subnet_id      = phpipam_first_free_subnet.subnet_v6.subnet_id
   description    = length(var.address_description) > count.index ? var.address_description[count.index] : "Created by Terraform"
   hostname       = length(var.address_hostname) > count.index ? var.address_hostname[count.index] : null
