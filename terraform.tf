@@ -17,38 +17,38 @@ data "phpipam_subnet" "supernet_v6" {
 }
 
 resource "phpipam_first_free_address" "gateway_v4" {
-  subnet_id      = phpipam_first_free_subnet.subnet_v4.subnet_id
-  description    = "Gateway"
-  is_gateway     = true
+  count         = var.add_gateway ? 1 : 0
+  subnet_id     = phpipam_first_free_subnet.subnet_v4.subnet_id
+  description   = "Gateway"
+  is_gateway    = true
 
   lifecycle {
     ignore_changes = [
       subnet_id,
-      ip_address,
     ]
   }
 }
 resource "phpipam_first_free_address" "network_v6" {
-  subnet_id      = phpipam_first_free_subnet.subnet_v6.subnet_id
-  description    = "Network Address"
+  count         = var.add_gateway ? 1 : 0
+  subnet_id     = phpipam_first_free_subnet.subnet_v6.subnet_id
+  description   = "Network Address"
 
   lifecycle {
     ignore_changes = [
       subnet_id,
-      ip_address,
     ]
   }
 }
 resource "phpipam_first_free_address" "gateway_v6" {
-  depends_on     = [phpipam_first_free_address.network_v6]
-  subnet_id      = phpipam_first_free_subnet.subnet_v6.subnet_id
-  description    = "Gateway"
-  is_gateway     = true
+  count         = var.add_gateway ? 1 : 0
+  depends_on    = [phpipam_first_free_address.network_v6]
+  subnet_id     = phpipam_first_free_subnet.subnet_v6.subnet_id
+  description   = "Gateway"
+  is_gateway    = true
 
   lifecycle {
     ignore_changes = [
       subnet_id,
-      ip_address,
     ]
   }
 }

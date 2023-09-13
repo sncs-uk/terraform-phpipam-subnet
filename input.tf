@@ -46,3 +46,9 @@ variable address_hostname {
   description = "Hostnames of the addresses that are to be created."
   default     = []
 }
+
+variable add_gateway {
+  type        = bool
+  description = "Whether to create a 'gateway' address at the beginning of the subnet"
+  default     = true
+}

@@ -21,6 +21,8 @@ module "example" {
   address_count             = 2
   address_description       = ["First host", "Second host"]
   address_hostname          = ["host1.example.com", "host2.example.com"]
+
+  add_gateway               = true
 }
 ```
 
