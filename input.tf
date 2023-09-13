@@ -31,22 +31,6 @@ variable subnet_description {
   description = "The description to put on the Subnet within PHPIPAM."
 }
 
-variable address_count {
-  type        = number
-  description = "The number of addresses to create in the new subnet."
-  default     = 0
-}
-variable address_description {
-  type        = list(string)
-  description = "Descriptions of the addresses that are to be created."
-  default     = []
-}
-variable address_hostname {
-  type        = list(string)
-  description = "Hostnames of the addresses that are to be created."
-  default     = []
-}
-
 variable add_gateway {
   type        = bool
   description = "Whether to create a 'gateway' address at the beginning of the subnet"

@@ -1,6 +1,6 @@
 # PHPIpam Subnet
 
-Create a new subnet within PHPIpam, and optionally create some addresses within it.
+Create a new subnet within PHPIpam.
 
 
 ## Usage
@@ -17,10 +17,6 @@ module "example" {
   supernet_v6_section_id    = 6
   supernet_v6_name          = "myv6supernet"
   subnet_v6_length          = 64
-
-  address_count             = 2
-  address_description       = ["First host", "Second host"]
-  address_hostname          = ["host1.example.com", "host2.example.com"]
 
   add_gateway               = true
 }
